@@ -1,0 +1,42 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.js"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.14",
+    "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.9.1",
+    "clsx": "latest",
+    "graphql": "^15.5.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.0.5",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "latest",
+    "styled-components": "^5.2.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-plugin-react": "^7.23.2"
+  }
+}
