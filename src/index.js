@@ -5,6 +5,9 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import theme from './theme/theme';
 import AuthProvider from './context/auth.context';
 import App from './App';
+import Amplify from 'aws-amplify';
+import awsConfig from './aws-exports';
+Amplify.configure(awsConfig);
 
 const rootElement = document.querySelector('#root');
 
