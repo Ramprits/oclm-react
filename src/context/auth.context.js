@@ -1,16 +1,20 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer } from 'react';
 
 export const AuthContext = createContext();
 
 const initialState = {
   currentUser: null,
-  isAuthenticated: true,
+  isAuthenticated: true
 };
 
 const reducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    case "SET_USER":
-      return { ...state, currentUser: payload, isAuthenticated: true };
+    case 'SET_USER':
+      return {
+        ...state,
+        currentUser: payload,
+        isAuthenticated: true
+      };
 
     default:
       return state;

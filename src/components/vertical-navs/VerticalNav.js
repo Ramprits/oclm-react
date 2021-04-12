@@ -1,76 +1,76 @@
-import React, { useContext } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useContext } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import Link from "@material-ui/core/Link";
-import Avatar from "@material-ui/core/Avatar";
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Link from '@material-ui/core/Link';
+import Avatar from '@material-ui/core/Avatar';
 
-import Drawer from "@material-ui/core/Drawer";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
+import Drawer from '@material-ui/core/Drawer';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
-import MenuIcon from "@material-ui/icons/Menu";
-import MailIcon from "@material-ui/icons/Mail";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import AppsIcon from "@material-ui/icons/Apps";
-import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
-import LiveHelpIcon from "@material-ui/icons/LiveHelp";
-import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import { AuthContext } from "../../context/auth.context";
+import MenuIcon from '@material-ui/icons/Menu';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import AppsIcon from '@material-ui/icons/Apps';
+import BusinessCenterIcon from '@material-ui/icons/BusinessCenter';
+import LiveHelpIcon from '@material-ui/icons/LiveHelp';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import { AuthContext } from '../../context/auth.context';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    display: "flex",
+    display: 'flex'
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    zIndex: theme.zIndex.drawer + 1
   },
   menuButton: {
-    display: "none",
+    display: 'none',
     marginRight: theme.spacing(2),
-    [theme.breakpoints.down("md")]: {
-      display: "inline-flex",
-    },
+    [theme.breakpoints.down('md')]: {
+      display: 'inline-flex'
+    }
   },
   linkBrand: {
     flexGrow: 1,
-    [theme.breakpoints.down("xs")]: {
-      display: "none",
-    },
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
   },
   linkBrandSmall: {
-    display: "none",
+    display: 'none',
     flexGrow: 1,
-    [theme.breakpoints.down("xs")]: {
-      display: "inline-block",
-    },
+    [theme.breakpoints.down('xs')]: {
+      display: 'inline-block'
+    }
   },
   drawer: {
     width: 256,
     flexShrink: 0,
-    [theme.breakpoints.down("md")]: {
-      display: "none",
-    },
+    [theme.breakpoints.down('md')]: {
+      display: 'none'
+    }
   },
   drawerContainer: {
     width: 256,
-    overflow: "auto",
+    overflow: 'auto'
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
-  },
+    padding: theme.spacing(3)
+  }
 }));
 
 export default function Navigation(props) {
   const {
-    state: { isAuthenticated },
+    state: { isAuthenticated }
   } = useContext(AuthContext);
 
   const classes = useStyles();
@@ -79,43 +79,50 @@ export default function Navigation(props) {
   const open = Boolean(anchorEl);
 
   const content = {
-    brand: { image: "mui-assets/img/logo-pied-piper-white.png", width: 120 },
-    "brand-small": {
-      image: "mui-assets/img/logo-pied-piper-white-icon.png",
-      width: 32,
+    brand: {
+      image: 'mui-assets/img/logo-pied-piper-white.png',
+      width: 120
     },
-    link1: "Features",
-    link2: "Enterprise",
-    link3: "Support",
-    link4: "ICO",
-    avatar: "mui-assets/img/photo-1492633423870-43d1cd2775eb.jpeg",
-    ...props.content,
+    'brand-small': {
+      image: 'mui-assets/img/logo-pied-piper-white-icon.png',
+      width: 32
+    },
+    link1: 'Features',
+    link2: 'Enterprise',
+    link3: 'Support',
+    link4: 'ICO',
+    avatar: 'mui-assets/img/photo-1492633423870-43d1cd2775eb.jpeg',
+    ...props.content
   };
 
-  let brand = content["brand"].text || "";
-  let brandSmall = content["brand-small"].text || "";
+  let brand = content['brand'].text || '';
+  let brandSmall = content['brand-small'].text || '';
 
-  if (content["brand"].image) {
+  if (content['brand'].image) {
     brand = (
-      <img src={content["brand"].image} alt="" width={content["brand"].width} />
+      <img
+        src={content['brand'].image}
+        alt=""
+        width={content['brand'].width}
+      />
     );
   }
 
-  if (content["brand-small"].image) {
+  if (content['brand-small'].image) {
     brandSmall = (
       <img
-        src={content["brand-small"].image}
+        src={content['brand-small'].image}
         alt=""
-        width={content["brand-small"].width}
+        width={content['brand-small'].width}
       />
     );
   }
 
   const buckets = {
-    main: Array.isArray(props.bucketMain) ? props.bucketMain : [],
+    main: Array.isArray(props.bucketMain) ? props.bucketMain : []
   };
 
-  const handleMenu = (event) => {
+  const handleMenu = event => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -123,10 +130,10 @@ export default function Navigation(props) {
     setAnchorEl(null);
   };
 
-  const toggleDrawer = (open) => (event) => {
+  const toggleDrawer = open => event => {
     if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
     ) {
       return;
     }
@@ -181,19 +188,19 @@ export default function Navigation(props) {
                 onClick={handleMenu}
                 color="inherit"
               >
-                <Avatar alt="" src={content["avatar"]} />
+                <Avatar alt="" src={content['avatar']} />
               </IconButton>
               <Menu
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: 'top',
+                  horizontal: 'right'
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
+                  vertical: 'top',
+                  horizontal: 'right'
                 }}
                 open={open}
                 onClose={handleClose}
@@ -210,59 +217,63 @@ export default function Navigation(props) {
         <Toolbar />
         <div className={classes.drawerContainer}>
           <List>
-            <ListItem button key={content["link1"]}>
+            <ListItem button key={content['link1']}>
               <ListItemIcon>
                 <AppsIcon />
               </ListItemIcon>
-              <ListItemText primary={content["link1"]} />
+              <ListItemText primary={content['link1']} />
             </ListItem>
-            <ListItem button key={content["link2"]}>
+            <ListItem button key={content['link2']}>
               <ListItemIcon>
                 <BusinessCenterIcon />
               </ListItemIcon>
-              <ListItemText primary={content["link2"]} />
+              <ListItemText primary={content['link2']} />
             </ListItem>
-            <ListItem button key={content["link3"]}>
+            <ListItem button key={content['link3']}>
               <ListItemIcon>
                 <LiveHelpIcon />
               </ListItemIcon>
-              <ListItemText primary={content["link3"]} />
+              <ListItemText primary={content['link3']} />
             </ListItem>
-            <ListItem button key={content["link4"]}>
+            <ListItem button key={content['link4']}>
               <ListItemIcon>
                 <AttachMoneyIcon />
               </ListItemIcon>
-              <ListItemText primary={content["link4"]} />
+              <ListItemText primary={content['link4']} />
             </ListItem>
           </List>
         </div>
       </Drawer>
-      <Drawer anchor="left" open={state.open} onClose={toggleDrawer(false)}>
+      <Drawer
+        anchor="left"
+        open={state.open}
+        onClose={toggleDrawer(false)}
+      >
         <div className={classes.drawerContainer}>
           <List>
-            <ListItem button key={content["link1"]}>
+            <ListItem button key={content['link1']}>
               <ListItemIcon>
                 <AppsIcon />
               </ListItemIcon>
-              <ListItemText primary={content["link1"]} />
+              <ListItemText primary={content['link1']} />
             </ListItem>
-            <ListItem button key={content["link2"]}>
+            <ListItem button key={content['link2']}>
               <ListItemIcon>
                 <BusinessCenterIcon />
               </ListItemIcon>
-              <ListItemText primary={content["link2"]} />
+              <ListItemText primary={content['link2']} />
             </ListItem>
-            <ListItem button key={content["link3"]}>
+            <ListItem button key={content['link3']}>
               <ListItemIcon>
                 <LiveHelpIcon />
               </ListItemIcon>
-              <ListItemText primary={content["link3"]} />
+              <ListItemText primary={content['link3']} />
             </ListItem>
-            <ListItem button key={content["link4"]}>
+            <ListItem button key={content['link4']}>
               <ListItemIcon>
                 <AttachMoneyIcon />
               </ListItemIcon>
-              <ListItemText primary={content["link4"]} />
+              <ListItemText primary={content['link4']} />
             </ListItem>
           </List>
         </div>
@@ -270,8 +281,10 @@ export default function Navigation(props) {
       <main className={classes.content}>
         <Toolbar />
         <div>
-          {buckets["main"].map((component) => (
-            <React.Fragment key={component}>{component}</React.Fragment>
+          {buckets['main'].map(component => (
+            <React.Fragment key={component}>
+              {component}
+            </React.Fragment>
           ))}
         </div>
       </main>

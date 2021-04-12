@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "oconnellreact",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authoconnellreact828381ab828381ab",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
