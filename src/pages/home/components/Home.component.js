@@ -52,7 +52,7 @@ export default function Home(props) {
   const classes = useStyles();
 
   const content = {
-    header: "Welcome to o'connell",
+    header: "O'connell",
     description:
       "The PiperNet is on it's way to revolutionize every smartphone, PC, and smart-fridge near you.",
     'primary-action': 'Sign up for free',

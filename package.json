@@ -15,6 +15,7 @@
     "@apollo/client": "^3.3.14",
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.9.1",
+    "aws-amplify": "^3.3.26",
     "clsx": "latest",
     "graphql": "^15.5.0",
     "react": "latest",
@@ -52,9 +53,9 @@
     "prettier": "^2.2.1"
   },
   "lint-staged": {
-  "*.js": [
-    "prettier --write",
-    "eslint --fix"
-  ]
-}
+    "*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
 }
