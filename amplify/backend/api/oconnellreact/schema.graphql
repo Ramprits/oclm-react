@@ -1,4 +1,4 @@
-type User @model() @auth(rules:[
+type User @model @auth(rules:[
   {allow: private, groups: ["admins"] }
   {allow: public, provider: iam }
 ]){
