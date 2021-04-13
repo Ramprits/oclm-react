@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -9,17 +9,16 @@ import TextField from '@material-ui/core/TextField';
 
 import { Controller, useForm } from 'react-hook-form';
 import { Auth } from 'aws-amplify';
-import { useStyles } from './components/login.styles';
-import { AuthContext } from '../../../context/auth.context';
 
-export default function LoginPage(props) {
+import { useStyles } from './components/register.styles';
+
+export default function ConfirmRegisterPage(props) {
   const classes = useStyles();
-  const { dispatch } = useContext(AuthContext);
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     reValidateMode: 'onSubmit',
     defaultValues: {
       username: '',
-      password: ''
+      code: ''
     }
   });
   const content = {
@@ -27,9 +26,9 @@ export default function LoginPage(props) {
       image: 'mui-assets/img/logo-pied-piper-icon.png',
       width: 100
     },
-    '02_header': 'Sign in',
-    '02_primary-action': 'Sign in',
-    '02_secondary-action': "Don't have an account?",
+    '02_header': 'Confirm Registration',
+    '02_primary-action': 'Confirm',
+    '02_secondary-action': 'Do you have an account?',
     '02_tertiary-action': 'Forgot password?',
     ...props.content
   };
@@ -47,16 +46,22 @@ export default function LoginPage(props) {
   } else {
     brand = content.brand.text || '';
   }
-
-  const onSubmit = useCallback(async ({ username, password }) => {
-    try {
-      const user = await Auth.signIn(username, password);
-      dispatch({ type: 'SET_USER', payload: user });
-      props.history.push('/');
-    } catch (error) {
-      console.error('error signing in', error);
+  useEffect(() => {
+    if (localStorage.getItem('registerEmail')) {
+      setValue('username', localStorage.getItem('registerEmail'));
     }
   }, []);
+
+  const onSubmit = useCallback(async data => {
+    try {
+      await Auth.confirmSignUp(data.username, data.code);
+      localStorage.removeItem('registerEmail');
+      props.history.push('/login');
+    } catch (error) {
+      console.error('error signing up:', error);
+    }
+  }, []);
+
   return (
     <Container maxWidth="xs">
       <Box pt={8} pb={10}>
@@ -84,23 +89,23 @@ export default function LoginPage(props) {
                   render={({ field }) => (
                     <TextField
                       {...field}
-                      placeholder="Email"
+                      placeholder="user name"
                       variant="outlined"
                       fullWidth
                     />
                   )}
                 />
               </Grid>
+
               <Grid item xs={12}>
                 <Controller
-                  name="password"
+                  name="code"
                   control={control}
                   rules={{ required: true }}
                   render={({ field }) => (
                     <TextField
                       {...field}
-                      type="password"
-                      placeholder="Password"
+                      placeholder="code"
                       variant="outlined"
                       fullWidth
                     />

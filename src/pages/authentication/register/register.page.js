@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback } from 'react';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -9,16 +9,16 @@ import TextField from '@material-ui/core/TextField';
 
 import { Controller, useForm } from 'react-hook-form';
 import { Auth } from 'aws-amplify';
-import { useStyles } from './components/login.styles';
-import { AuthContext } from '../../../context/auth.context';
 
-export default function LoginPage(props) {
+import { useStyles } from './components/register.styles';
+
+export default function RegisterPage(props) {
   const classes = useStyles();
-  const { dispatch } = useContext(AuthContext);
   const { handleSubmit, control } = useForm({
     reValidateMode: 'onSubmit',
     defaultValues: {
       username: '',
+      email: '',
       password: ''
     }
   });
@@ -27,9 +27,9 @@ export default function LoginPage(props) {
       image: 'mui-assets/img/logo-pied-piper-icon.png',
       width: 100
     },
-    '02_header': 'Sign in',
-    '02_primary-action': 'Sign in',
-    '02_secondary-action': "Don't have an account?",
+    '02_header': 'Sign up',
+    '02_primary-action': 'Sign up',
+    '02_secondary-action': 'Do you have an account?',
     '02_tertiary-action': 'Forgot password?',
     ...props.content
   };
@@ -48,15 +48,23 @@ export default function LoginPage(props) {
     brand = content.brand.text || '';
   }
 
-  const onSubmit = useCallback(async ({ username, password }) => {
+  const onSubmit = useCallback(async data => {
     try {
-      const user = await Auth.signIn(username, password);
-      dispatch({ type: 'SET_USER', payload: user });
-      props.history.push('/');
+      const { user } = await Auth.signUp({
+        username: data.email,
+        password: data.password,
+        attributes: {
+          email: data.email
+        }
+      });
+      localStorage.setItem('registerEmail', data.email);
+      props.history.push('/confirmRegister');
+      console.log(user);
     } catch (error) {
-      console.error('error signing in', error);
+      console.error('error signing up:', error);
     }
   }, []);
+
   return (
     <Container maxWidth="xs">
       <Box pt={8} pb={10}>
@@ -84,6 +92,22 @@ export default function LoginPage(props) {
                   render={({ field }) => (
                     <TextField
                       {...field}
+                      placeholder="user name"
+                      variant="outlined"
+                      fullWidth
+                    />
+                  )}
+                />
+              </Grid>
+
+              <Grid item xs={12}>
+                <Controller
+                  name="email"
+                  control={control}
+                  rules={{ required: true }}
+                  render={({ field }) => (
+                    <TextField
+                      {...field}
                       placeholder="Email"
                       variant="outlined"
                       fullWidth
@@ -91,6 +115,7 @@ export default function LoginPage(props) {
                   )}
                 />
               </Grid>
+
               <Grid item xs={12}>
                 <Controller
                   name="password"
