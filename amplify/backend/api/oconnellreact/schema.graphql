@@ -10,3 +10,15 @@ type User @model @auth(rules:[
   updatedOn: AWSDateTime!
 
 }
+enum Genders {
+  MALE
+  FEMALE
+}
+
+type Lead @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  firstName: String!
+  middleName: String
+  lastName: String!
+  gender: Genders
+}
