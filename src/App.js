@@ -8,11 +8,12 @@ import {
   Redirect
 } from 'react-router-dom';
 
-import LoginPage from './pages/authentication/login/login.page';
-import HomePage from './pages/home/home.page';
-import RegisterPage from './pages/authentication/register/register.page';
-import ConfirmRegisterPage from './pages/authentication/register/confirm-register.page';
+import LoginPage from 'pages/authentication/login/login.page';
+import HomePage from 'pages/home/home.page';
+import RegisterPage from 'pages/authentication/register/register.page';
+import ConfirmRegisterPage from 'pages/authentication/register/confirm-register.page';
 import { AuthContext } from './context/auth.context';
+import LeadPage from 'pages/leads/lead.page';
 
 const history = createBrowserHistory();
 
@@ -30,6 +31,17 @@ export default function App() {
             render={() =>
               isAuthenticated ? (
                 <HomePage />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
+          ></Route>
+          <Route
+            exact
+            path="/products"
+            render={() =>
+              isAuthenticated ? (
+                <LeadPage />
               ) : (
                 <Redirect to="/login" />
               )
