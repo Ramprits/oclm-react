@@ -15,7 +15,11 @@ enum Genders {
   FEMALE
 }
 
-type Lead @model  {
+type Lead @model @searchable 
+@auth(rules:[
+  {allow: private}
+  {allow: public , provider: iam}
+])  {
   id: ID!
   firstName: String!
   middleName: String
