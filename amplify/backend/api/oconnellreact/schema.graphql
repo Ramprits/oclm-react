@@ -25,4 +25,7 @@ type Lead @model @searchable
   middleName: String
   lastName: String!
   gender: Genders
+  profilePicture: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
 }

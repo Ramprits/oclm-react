@@ -69,3 +69,32 @@ export const listLeads = /* GraphQL */ `
     }
   }
 `;
+export const searchLeads = /* GraphQL */ `
+  query SearchLeads(
+    $filter: SearchableLeadFilterInput
+    $sort: SearchableLeadSortInput
+    $limit: Int
+    $nextToken: String
+    $from: Int
+  ) {
+    searchLeads(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+    ) {
+      items {
+        id
+        firstName
+        middleName
+        lastName
+        gender
+        createdAt
+        updatedAt
+      }
+      nextToken
+      total
+    }
+  }
+`;

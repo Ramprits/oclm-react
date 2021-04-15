@@ -1,14 +1,18 @@
 /* eslint-disable react/jsx-key */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { API, graphqlOperation } from 'aws-amplify';
 import { listLeads } from 'graphql/queries';
 import MetaData from 'components/helmet/Meta-data.component';
 import Navigation from 'components/vertical-navs/VerticalNav';
+import { useAuth } from 'context/auth.context';
 
 function LeadPage() {
+  const context = useAuth();
+  console.log(context);
+  const [list, setList] = useState([]);
   useEffect(() => {
     API.graphql(graphqlOperation(listLeads))
-      .then(res => console.log(res))
+      .then(res => setList(res.data.listLeads.items))
       .catch(err => console.error(err));
   }, []);
 
@@ -32,7 +36,7 @@ function LeadPage() {
             link2: 'Product',
             link4: 'Contact'
           }}
-          bucketMain={[<div>Lead pages</div>]}
+          bucketMain={[<pre>{JSON.stringify(list, 4, null)}</pre>]}
         />
       </React.Fragment>
     </div>
