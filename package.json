@@ -12,12 +12,10 @@
     "lint": "npm run prettier && npm run eslint"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.14",
     "@material-ui/core": "latest",
     "@material-ui/icons": "^4.9.1",
     "aws-amplify": "^3.3.26",
     "clsx": "latest",
-    "graphql": "^15.5.0",
     "react": "latest",
     "react-dom": "latest",
     "react-helmet": "^6.1.0",
