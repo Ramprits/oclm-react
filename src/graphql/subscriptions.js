@@ -51,6 +51,7 @@ export const onCreateLead = /* GraphQL */ `
       middleName
       lastName
       gender
+      profilePicture
       createdAt
       updatedAt
     }
@@ -64,6 +65,7 @@ export const onUpdateLead = /* GraphQL */ `
       middleName
       lastName
       gender
+      profilePicture
       createdAt
       updatedAt
     }
@@ -77,6 +79,7 @@ export const onDeleteLead = /* GraphQL */ `
       middleName
       lastName
       gender
+      profilePicture
       createdAt
       updatedAt
     }

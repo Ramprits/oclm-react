@@ -44,6 +44,7 @@ export const getLead = /* GraphQL */ `
       middleName
       lastName
       gender
+      profilePicture
       createdAt
       updatedAt
     }
@@ -62,6 +63,7 @@ export const listLeads = /* GraphQL */ `
         middleName
         lastName
         gender
+        profilePicture
         createdAt
         updatedAt
       }
@@ -90,6 +92,7 @@ export const searchLeads = /* GraphQL */ `
         middleName
         lastName
         gender
+        profilePicture
         createdAt
         updatedAt
       }

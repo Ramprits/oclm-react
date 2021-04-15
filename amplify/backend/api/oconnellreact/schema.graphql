@@ -26,6 +26,27 @@ type Lead @model @searchable
   lastName: String!
   gender: Genders
   profilePicture: String
+  address: [Address] @connection(keyName: "byLeadId", fields:["id"])
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime
+}
+
+enum AddressType{
+  work
+  home
+}
+type Address @model @searchable @auth(rules:[
+  {allow: private}
+  {allow: public , provider: iam}
+]) @key(name: "byLeadId", fields: ["leadId","createdAt"]){
+  id: ID!
+  type: AddressType
+  address_line_1: String
+  address_line_2: String
+  city: String
+  state: String
+  country: String
+  leadId: ID!
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }
