@@ -1,103 +1,43 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createUser = /* GraphQL */ `
-  mutation CreateUser(
-    $input: CreateUserInput!
-    $condition: ModelUserConditionInput
+export const createTodo = /* GraphQL */ `
+  mutation CreateTodo(
+    $input: CreateTodoInput!
+    $condition: ModelTodoConditionInput
   ) {
-    createUser(input: $input, condition: $condition) {
+    createTodo(input: $input, condition: $condition) {
       id
-      firstName
-      middleName
-      lastName
-      createdOn
-      updatedOn
+      name
+      description
       createdAt
       updatedAt
     }
   }
 `;
-export const updateUser = /* GraphQL */ `
-  mutation UpdateUser(
-    $input: UpdateUserInput!
-    $condition: ModelUserConditionInput
+export const updateTodo = /* GraphQL */ `
+  mutation UpdateTodo(
+    $input: UpdateTodoInput!
+    $condition: ModelTodoConditionInput
   ) {
-    updateUser(input: $input, condition: $condition) {
+    updateTodo(input: $input, condition: $condition) {
       id
-      firstName
-      middleName
-      lastName
-      createdOn
-      updatedOn
+      name
+      description
       createdAt
       updatedAt
     }
   }
 `;
-export const deleteUser = /* GraphQL */ `
-  mutation DeleteUser(
-    $input: DeleteUserInput!
-    $condition: ModelUserConditionInput
+export const deleteTodo = /* GraphQL */ `
+  mutation DeleteTodo(
+    $input: DeleteTodoInput!
+    $condition: ModelTodoConditionInput
   ) {
-    deleteUser(input: $input, condition: $condition) {
+    deleteTodo(input: $input, condition: $condition) {
       id
-      firstName
-      middleName
-      lastName
-      createdOn
-      updatedOn
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createLead = /* GraphQL */ `
-  mutation CreateLead(
-    $input: CreateLeadInput!
-    $condition: ModelLeadConditionInput
-  ) {
-    createLead(input: $input, condition: $condition) {
-      id
-      firstName
-      middleName
-      lastName
-      gender
-      profilePicture
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateLead = /* GraphQL */ `
-  mutation UpdateLead(
-    $input: UpdateLeadInput!
-    $condition: ModelLeadConditionInput
-  ) {
-    updateLead(input: $input, condition: $condition) {
-      id
-      firstName
-      middleName
-      lastName
-      gender
-      profilePicture
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteLead = /* GraphQL */ `
-  mutation DeleteLead(
-    $input: DeleteLeadInput!
-    $condition: ModelLeadConditionInput
-  ) {
-    deleteLead(input: $input, condition: $condition) {
-      id
-      firstName
-      middleName
-      lastName
-      gender
-      profilePicture
+      name
+      description
       createdAt
       updatedAt
     }
